@@ -2,23 +2,18 @@ import java.util.Arrays;
 
 public class heap {
 	public static void buildMax(int a[],int last) {
-		for(int i=(last-1)/2;i>=0;i--) {
-			int k=i;
-			while((k+1)*2<=last) {
-				int bigger=(k+1)*2;
-				if(bigger<last) {	
-					if(a[bigger]<a[bigger+1]) {
-						bigger++;
-					}
-				}
-				if(a[k]<a[bigger]) {
-					swap(a,k,bigger);
-					k=bigger;
-				}
-				else {
-					break;
-				}
+		 for(int i = (last - 1) / 2; i >= 0; i--){              // parent是（index - 1）/ 2, 左右孩子分别是2 * index + 1, 2 * index + 2
+		    int parent = i;
+		    if(parent * 2 + 1 > last) continue; // 不存在孩子就结束
+		    int bigger = parent * 2 + 1;
+		    if(bigger < last){  //若右孩子比左孩子大，取两个孩子大的那一个
+			if(arr[bigger] < arr[bigger + 1]){
+			    bigger++;
 			}
+		    }
+		    if(arr[parent] < arr[bigger]){
+			swap(arr, parent, bigger);
+		    }
 		}
 	}
 	public static void swap(int a[],int i,int j) {
