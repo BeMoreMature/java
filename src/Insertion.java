@@ -1,56 +1,47 @@
 
 public class Insertion {
-	public static void insert(int a[]) {
-		for(int i=0;i<a.length;i++) {
-			int temp=a[i],j=0;
-			for(j=i;j>0 && temp<a[j-1];j--) {
-				a[j]=a[j-1];
+	public void insertSort(int arr[]){
+		for(int i = 0; i < arr.length; i++){
+		    for(int j = i; j > 0 && arr[j] < arr[j - 1]; j--){    //往前，同时判断相邻的，交换，往前插
+			swap(arr, j - 1, j);
+		    }
+		}
+	    }
+	 public void selectSort(int arr[]){
+	       for(int i = 0; i < arr.length; i++){
+		   int min = i;
+		   for(int j = i; j < arr.length; j++){   //往后找到最小的，换到前面来
+		       if(arr[min] > arr[j]){
+			   min = j;
+		       }
+		   }
+		   swap(arr, i, min);
+	       }
+	    }
+	 public void bubbleSort(int arr[]){
+		for(int i = 0; i < arr.length; i++){      //比较相邻的，往后冒泡
+		    for(int j = 0; j < arr.length - 1; j++){
+			if(arr[j] > arr[j + 1]){
+			    swap(arr, j, j + 1);
 			}
-			a[j]=temp;
+		    }
 		}
-		for(int i=0;i<a.length;i++) {
-			System.out.print(a[i]+" ");
-		}
-	}
-	public static void select(int a[]) {
-		for(int i=0;i<a.length;i++) {
-			int index=i,temp=0;
-			for(int j=i;j<a.length;j++) {
-				if(a[j]<a[index]) {
-					index=j;
-				}
-			}
-			temp=a[index];
-			a[i]=a[index];
-			a[index]=temp;
-		}
-		for(int i=0;i<a.length;i++) {
-			System.out.print(a[i]+" ");
-		}
-	}
-	public static void bubble(int a[]) {
-		for(int i=0;i<a.length;i++) {
-			int temp=0;
-			for(int j=0;j<a.length-i-1;j++) {
-				if(a[j]>a[j+1]) {
-					temp=a[j];
-					a[j]=a[j+1];
-					a[j+1]=temp;
-				}
-			}
-		}
-		for(int i=0;i<a.length;i++) {
-			System.out.print(a[i]+" ");
-		}
-	}
+	    }
+	public static void swap(int arr[], int i, int j){
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] a={49,38,65,97,76,13,27,49,78,34,12,64};
-		insert(a);
-		System.out.println();
-		select(a);
-		System.out.println();
-		bubble(a);
+		Insertion s = new Insertion();
+		int[] arr={49,38,65,97,76,13,27,49,78,34,12,64};
+		s.selectSort(arr);
+	       s.insertSort(arr);
+	       s.bubbleSort(arr);
+		 for(int i = 0; i < arr.length; i++){
+		    System.out.print(arr[i]+" ");
+		}
 	}
 
 }
