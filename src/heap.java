@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class heap {
-	public static void buildMax(int a[],int last) {
+	public static void buildMax(int arr[],int last) {
 		 for(int i = (last - 1) / 2; i >= 0; i--){              // parent是（index - 1）/ 2, 左右孩子分别是2 * index + 1, 2 * index + 2
 		    int parent = i;
 		    if(parent * 2 + 1 > last) continue; // 不存在孩子就结束
